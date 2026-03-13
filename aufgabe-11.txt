@@ -1,0 +1,8 @@
+# 1. Kompakter Überblick mit Branch-Darstellung
+git log --oneline --graph --all
+
+# 2. Commits eines bestimmten Autors der letzten 2 Wochen
+git log --oneline --author="Dein Name" --since="2 weeks ago"
+
+# 3. Welche Dateien wurden in jedem Commit verändert?
+git log --stat --oneline
