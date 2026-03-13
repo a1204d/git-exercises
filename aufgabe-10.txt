@@ -1,0 +1,38 @@
+Aufgabe 10: rm vs git rm, mv vs git mv
+
+=== Frage 1: rm vs. git rm ===
+
+- rm foo.txt: Datei wird nur im Arbeitsverzeichnis geloescht.
+  git status zeigt " D foo.txt" (unstaged).
+  Die Loeschung muss danach noch mit git add oder git rm gestaged werden.
+
+- git rm bar.txt: Datei wird geloescht UND die Loeschung wird
+  direkt gestaged.
+  git status zeigt "D  bar.txt" (staged).
+  Beim naechsten git commit wird die Loeschung eingecheckt.
+
+=== Frage 2: Loeschungen rueckgaengig machen ===
+
+- foo.txt (mit rm geloescht, unstaged):
+  git restore foo.txt
+
+- bar.txt (mit git rm geloescht, staged):
+  git restore --staged bar.txt  (Staging rueckgaengig machen)
+  git restore bar.txt           (Datei wiederherstellen)
+
+Bei git rm braucht es zwei Befehle, da die Loeschung
+bereits im Staging-Bereich ist.
+
+=== Frage 3: mv vs. git mv ===
+
+- mv foo.txt foo_neu.txt: Nur im Arbeitsverzeichnis umbenannt.
+  Git erkennt es als geloeschte + neue Datei.
+  Man muss danach manuell git add und git rm ausfuehren.
+
+- git mv bar.txt bar_neu.txt: Umbenennung + Staging in einem Schritt.
+  Git erkennt es direkt als Umbenennung (R).
+
+git mv ist vorzuziehen, weil:
+1. Weniger Befehle noetig (1 statt 3)
+2. Git erkennt die Umbenennung sofort korrekt
+3. Keine Gefahr, einen der Schritte zu vergessen
